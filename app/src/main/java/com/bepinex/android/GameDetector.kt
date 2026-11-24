@@ -64,11 +64,19 @@ addCategory("com.oculus.intent.category.VR")
 
         @Suppress("DEPRECATION")
         val activities = pm.queryIntentActivities(launchIntent, PackageManager.MATCH_ALL)
+        
+val packages = activities.map {
+    it.activityInfo.packageName
+}.toMutableSet()
+
+packages.add("quest.eleven.forfunlabs")
+
 
         BepInExLog.i("Scanning ${activities.size} launchable apps for Unity IL2CPP games...")
 
-        for (resolveInfo in activities) {
-            val packageName = resolveInfo.activityInfo.packageName
+       
+for (packageName in packages) {
+
 
             // Deduplicate (some apps have multiple launcher activities)
             if (packageName in seenPackages) continue
