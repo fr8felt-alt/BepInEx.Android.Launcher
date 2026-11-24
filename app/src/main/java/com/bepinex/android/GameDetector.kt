@@ -57,7 +57,9 @@ object GameDetector {
 
         // Query all launchable activities (works with <queries> intent filter)
         val launchIntent = Intent(Intent.ACTION_MAIN).apply {
-            addCategory(Intent.CATEGORY_LAUNCHER)
+            
+addCategory("com.oculus.intent.category.VR")
+
         }
 
         @Suppress("DEPRECATION")
